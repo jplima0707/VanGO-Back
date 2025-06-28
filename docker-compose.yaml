@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    container_name: meu_postgres
+    environment:
+      POSTGRES_USER: joao
+      POSTGRES_PASSWORD: vango
+      POSTGRES_DB: vango_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
