@@ -18,17 +18,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+
     @Column(length = 255, nullable = false)
     private String name;
+
     @Column(length = 255, nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false)
     private String password;
+
     @Column(nullable = false)
     private String phone;
+
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
