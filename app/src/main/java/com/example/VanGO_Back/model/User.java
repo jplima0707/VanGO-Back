@@ -28,7 +28,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(length = 20 , nullable = false)
     private String phone;
 
     @Column(nullable = false)
@@ -96,5 +96,9 @@ public class User {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public void updateCreatedAt() {
+        this.createdAt = LocalDateTime.now();
     }
 }
