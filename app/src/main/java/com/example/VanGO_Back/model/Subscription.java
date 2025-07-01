@@ -8,11 +8,11 @@ public class Subscription {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long subscriptionId;
+    private Long subscription_id;
 
     @OneToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Long userId;
+    @JoinColumn(name = "fk_client_id", nullable = false)
+    private Long user_id;
 
     private LocalDateTime startDate;
     private LocalDateTime endDate;
@@ -23,19 +23,19 @@ public class Subscription {
     public Subscription() {
     }
 
-    public Subscription(Long userId, LocalDateTime startDate, LocalDateTime endDate) {
-        this.userId = userId;
+    public Subscription(Long user_id, LocalDateTime startDate, LocalDateTime endDate) {
+        this.user_id = user_id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.isActive = false;
     }
 
-    public Long getSubscriptionId() {
-        return subscriptionId;
+    public Long getsubscription_id() {
+        return subscription_id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getuser_id() {
+        return user_id;
     }
 
     public LocalDateTime getStartDate() {
@@ -50,8 +50,8 @@ public class Subscription {
         return isActive;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId; 
+    public void setuser_id(Long user_id) {
+        this.user_id = user_id; 
     }
 
     public void setStartDate(LocalDateTime startDate) {

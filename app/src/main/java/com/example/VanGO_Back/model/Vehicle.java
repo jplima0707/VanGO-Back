@@ -1,7 +1,7 @@
 package com.example.VanGO_Back.model;
 
-import java.util.List;
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,10 +17,10 @@ public class Vehicle {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long vehicleId; 
+    private Long vehicle_id; 
 
     @ManyToOne
-    @JoinColumn(name = "enterprise_id")
+    @JoinColumn(name = "fk_enterprise_id")
     private Enterprise enterprise;
 
     @ManyToMany(mappedBy = "vehicles")
@@ -36,17 +36,17 @@ public class Vehicle {
     private String color;
 
     @Column(length = 4, nullable = false)
-    private int year;
+    private Integer year;
 
     @Column(length = 3, nullable = false)
-    private int capacity;
+    private Integer capacity;
 
-    private float fuelConsumption; 
+    private Float fuelConsumption; 
 
     public Vehicle() {
     }
 
-    public Vehicle(Enterprise enterprise, List<Driver> drivers, String model, String licensePlate, String color, int year, int capacity, float fuelConsumption) {
+    public Vehicle(Enterprise enterprise, List<Driver> drivers, String model, String licensePlate, String color, Integer year, Integer capacity, float fuelConsumption) {
         this.enterprise = enterprise;
         this.drivers = drivers;
         this.model = model;
@@ -57,8 +57,8 @@ public class Vehicle {
         this.fuelConsumption = fuelConsumption;
     }
 
-    public Long getVehicleId() {
-        return vehicleId;
+    public Long getvehicle_id() {
+        return vehicle_id;
     }
 
     public Enterprise getEnterprise() {
@@ -81,11 +81,11 @@ public class Vehicle {
         return color;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public int getCapacity() {
+    public Integer getCapacity() {
         return capacity;
     }
 
@@ -113,14 +113,14 @@ public class Vehicle {
         this.color = color;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         if (year < 1900 || year > LocalDate.now().getYear() + 1) {
             throw new IllegalArgumentException("Year must be between 1886 and next year.");
         }
         this.year = year;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("Capacity must be a positive integer.");
         }
