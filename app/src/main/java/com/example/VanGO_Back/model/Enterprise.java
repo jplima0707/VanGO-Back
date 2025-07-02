@@ -101,4 +101,9 @@ public class Enterprise {
     public void setDrivers(List<Driver> drivers) {
         this.drivers = drivers;
     }
+
+    public void addDriver(Driver driver) {
+        this.drivers.add(driver);
+        driver.setEnterprise(this);
+    }
 }

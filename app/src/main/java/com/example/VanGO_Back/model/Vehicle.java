@@ -133,4 +133,11 @@ public class Vehicle {
         }
         this.fuelConsumption = fuelConsumption;
     }
+
+    public void addDriver(Driver driver) {
+        if (!this.drivers.contains(driver)) {
+            this.drivers.add(driver);
+            driver.getVehicles().add(this); // Ensure bidirectional relationship
+        }
+    }
 }

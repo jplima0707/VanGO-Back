@@ -2,6 +2,7 @@ package com.example.VanGO_Back.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Column;
 
 @Entity
 public class Acess {
@@ -28,7 +28,6 @@ public class Acess {
 
     @Column(length = 255, nullable = false, unique = true)
     private String code;
-    private boolean isActive;
     private LocalDateTime expiresAt;
 
     public Acess() {
@@ -38,7 +37,6 @@ public class Acess {
         this.trip = trip;
         this.client = client;
         this.code = code;
-        this.isActive = LocalDateTime.now().isBefore(expiresAt);
         this.expiresAt = expiresAt;
     }
 
@@ -83,7 +81,6 @@ public class Acess {
             throw new IllegalArgumentException("Expiration time cannot be in the past.");
         }
         this.expiresAt = expiresAt;
-        this.isActive = LocalDateTime.now().isBefore(expiresAt);
     }
 
 }

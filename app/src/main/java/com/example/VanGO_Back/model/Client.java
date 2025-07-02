@@ -1,14 +1,15 @@
 package com.example.VanGO_Back.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Client {
@@ -28,14 +29,13 @@ public class Client {
     @OneToMany(mappedBy = "client")
     List<Acess> accessList;
 
-
-
     public Client() {
     }
 
     public Client(User user, Subscription subscription) {
         this.user = user;
         this.subscription = subscription;
+        this.accessList = new ArrayList<>();
         this.client_id = user.getUser_id(); // client_id is the same as user_id in User
     }
 
@@ -60,4 +60,16 @@ public class Client {
         this.subscription = subscription;
     }
 
+    public List<Acess> getAccessList() {
+        return accessList;
+    }
+
+    public void setAccessList(List<Acess> accessList) {
+        this.accessList = accessList;
+    }
+
+    public void addAccess(Acess access) {
+        this.accessList.add(access);
+        access.setClient(this); // Ensure bidirectional relationship
+    }
 }
